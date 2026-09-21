@@ -1,4 +1,4 @@
-﻿namespace vector_animation;
+﻿namespace vector_animation.FlexableVectors;
 
 public class FlexVector {
 	private object[] raw;

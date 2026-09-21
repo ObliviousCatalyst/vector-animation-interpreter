@@ -3,15 +3,15 @@ using System.Dynamic;
 namespace vector_animation;
 
 public class StdDynamic : DynamicObject {
-	private OrderedDictionary<string, object> props = new OrderedDictionary<string, object>();
+	private OrderedDictionary <string, object> props = new OrderedDictionary<string, object>();
 
-	public override bool TryGetMember (GetMemberBinder binder, out object result) {
+	public override bool TryGetMember (GetMemberBinder binder, out object? result) {
 		string name = binder.Name.ToLower();
 		return props.TryGetValue(name, out result);
 	}
 
-	public override bool TrySetMember (SetMemberBinder binder, object value) {
-		props[binder.Name.ToLower()] = value;
+	public override bool TrySetMember (SetMemberBinder binder, object? value) {
+		props[binder.Name.ToLower()] = value!; // vscode told me to put this exclamation mark here but i don't knwow what it does
 
 		return true;
 	}
