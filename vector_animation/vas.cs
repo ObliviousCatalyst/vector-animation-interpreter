@@ -1,8 +1,9 @@
 using System.Dynamic;
-using Microsoft.VisualBasic;
+using System.Runtime.InteropServices.JavaScript;
 namespace vector_animation;
 
-public static class VAS {
+public static partial class VAS {
+	[JSExport]
 	public static string[] Tokenise (string file) {
 		int pt;
 		char[] temp = {};

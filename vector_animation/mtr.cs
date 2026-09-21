@@ -1,7 +1,10 @@
+using System.Runtime.InteropServices.JavaScript;
+
 namespace vector_animation;
 
-public static class MTR {
-	public static string[] tokenise () {
+public static partial class MTR {
+	[JSExport]
+	public static string[] Tokenise () {
 		
 		return [];
 	}
