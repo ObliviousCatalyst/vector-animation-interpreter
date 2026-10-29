@@ -81,7 +81,7 @@ public static partial class VAS {
 	
 
 	public static class Parser {
-		public class SyntaxTree : StdDynamic {
+		public class SyntaxTree /*: StdDynamic */ {
 			public SyntaxTree (string[] tokens) {
 				
 			}

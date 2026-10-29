@@ -1,0 +1,15 @@
+namespace vector_animation.utils;
+// public class StdDynamic  {
+// 	private OrderedDictionary <string, object> props = new OrderedDictionary<string, object>();
+
+// 	public override bool TryGetMember (GetMemberBinder binder, out object? result) {
+// 		string name = binder.Name.ToLower();
+// 		return props.TryGetValue(name, out result);
+// 	}
+
+// 	public override bool TrySetMember (SetMemberBinder binder, object? value) {
+// 		props[binder.Name.ToLower()] = value!; // vscode told me to put this exclamation mark here but i don't knwow what it does
+
+// 		return true;
+// 	}
+// }
