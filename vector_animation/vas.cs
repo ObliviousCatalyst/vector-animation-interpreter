@@ -97,9 +97,19 @@ public static partial class VAS {
 			for (int pt = 0; pt < file.Length; pt++) {
 				ContextTracker.ContextGeneral currentContext = ContextTracker.general.GetLastItem();
 				char currentChar = file[pt];
-				switch (currentContext) {
-					case ContextTracker.ContextGeneral.topLevel:
+				switch (ContextTracker.scope) {
+					case ContextTracker.ContextScope.standard:
 						initiatorSwitch.Exec(currentChar);
+						ContextTracker.scope = ContextTracker.ContextScope.property;
+					break;
+
+					case ContextTracker.ContextScope.property:
+						if (SpecialChars.IsSpecial(currentChar) && !(currentChar == ':')) {
+							tokens.Push(DefType(iToken));
+							iToken = "";
+							break;
+						}
+						iToken += currentChar;
 					break;
 				}
 			}
