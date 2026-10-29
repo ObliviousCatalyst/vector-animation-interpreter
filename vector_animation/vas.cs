@@ -80,6 +80,20 @@ public static partial class VAS {
 				() => ContextTracker.general.Push(ContextTracker.ContextGeneral.UInstructionDef)
 			]);
 
+			string DefType (string str) {
+				string type = "UNRECOGNIZED";
+				switch (ContextTracker.general.GetLastItem()) {
+					case ContextTracker.ContextGeneral.UInstructionDef:
+						type = "instruction-def";
+					break;
+
+					case ContextTracker.ContextGeneral.UResourceDef:
+						type = "resource-def";
+					break;
+				}
+				return $"{type}:{str}";
+			}
+
 			for (int pt = 0; pt < file.Length; pt++) {
 				ContextTracker.ContextGeneral currentContext = ContextTracker.general.GetLastItem();
 				char currentChar = file[pt];
