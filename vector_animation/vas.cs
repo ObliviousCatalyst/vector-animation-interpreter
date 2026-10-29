@@ -132,6 +132,6 @@ public static partial class VAS {
 	}
 
 	public static Parser.SyntaxTree CreateSyntaxTree (string file) {
-		return new Parser.SyntaxTree(Lexer.Stage2(Lexer.Stage1(file)));
+		return new Parser.SyntaxTree(Lexer.Stage2(Lexer.Tokenize(file).ExtractStructArray()));
 	}
 }
