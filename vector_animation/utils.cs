@@ -13,7 +13,8 @@ public class SwitchBlock <keyType> where keyType : notnull {
 	}
 
 	public void Exec (keyType key) {
-		functions[key]();
+		functions.TryGetValue(key, out Action? func);
+		func?.Invoke();
 	}
 }
 
