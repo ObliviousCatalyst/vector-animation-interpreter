@@ -18,6 +18,7 @@ public static partial class VAS {
 			public enum ContextScope {
 				//topLevel,
 				standard,
+				property,
 
 				nameString,
 				stdString,
