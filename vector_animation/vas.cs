@@ -3,6 +3,7 @@ using vector_animation.utils;
 namespace vector_animation;
 
 public static partial class VAS {
+	public static partial class Lexer {
 		public static class ContextTracker {
 			public enum ContextGeneral {
 				topLevel,
