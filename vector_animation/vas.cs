@@ -31,15 +31,16 @@ public static partial class VAS {
 		}
 
 		
-
-		public static string[] Stage1 (string file) {
+		//[JSExport]
+		public static DynamicArray<string> Tokenize (string file) {
+			string iToken = "";
+			DynamicArray<string> tokens = new();
+			
 			SwitchBlock<char> initiatorSwitch = new(['@','#'], [
 				() => ContextTracker.general.Push(ContextTracker.ContextGeneral.UResourceDef),
 				() => ContextTracker.general.Push(ContextTracker.ContextGeneral.UInstructionDef)
 			]);
-			string[] tokens = {};
 
-			
 			for (int pt = 0; pt < file.Length; pt++) {
 				ContextTracker.ContextGeneral currentContext = ContextTracker.general.GetLastItem();
 				char currentChar = file[pt];
