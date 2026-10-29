@@ -5,6 +5,44 @@ namespace vector_animation;
 
 public static partial class VAS {
 	public static partial class Lexer {
+		public static class SpecialChars {
+			public static readonly char[] 
+			whitespace = [' ','\t','\n'],
+			separators = [',','.',':',';'],
+			operators = ['!','@','#','$','%','&','+','-','*','/','\\','~'],
+			delimiters = ['(',')','[',']','{','}','\"','\'','>','<'];
+			
+			public static bool CheckInGroup (char input, char[] group) {
+				bool result = false;
+				foreach (char character in group) {
+					if (input == character) {
+						result = true;
+					}
+				}
+				return result;
+			}
+
+			public static bool IsWhitespace (char input) {
+				return CheckInGroup(input, whitespace);
+			}
+
+			public static bool IsSeparator (char input) {
+				return CheckInGroup(input, separators);
+			}
+
+			public static bool IsOperator (char input) {
+				return CheckInGroup(input, operators);
+			}
+
+			public static bool IsDelimiter (char input) {
+				return CheckInGroup(input, delimiters);
+			}
+
+			public static bool IsSpecial (char input) {
+				return IsWhitespace(input) || IsOperator(input) || IsSeparator(input) || IsDelimiter(input);
+			}
+		} 
+		
 		public static class ContextTracker {
 			public enum ContextGeneral {
 				topLevel,
