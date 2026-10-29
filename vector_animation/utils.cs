@@ -112,4 +112,22 @@ public class DynamicArray <mainType> {
 		internalArray[last] = default;
 		return temp;
 	}
+
+	public mainType?[] ExtractNullableStructArray () {
+		return (mainType?[]) internalArray.Clone();
+	}
+
+	public mainType[] ExtractStructArray () {
+		mainType[] arr = [];
+		Array.Resize(ref arr, internalArray.Length);
+		for (int pt = 0; pt < internalArray.Length; pt++) {
+			if (internalArray[pt] == null) {
+				arr[pt] = default!;
+			}
+			else {
+				arr[pt] = internalArray[pt]!;
+			}
+		}
+		return arr;
+	}
 }
