@@ -8,8 +8,9 @@ public static partial class VAS {
 		public static class SpecialChars {
 			public static readonly char[] 
 			whitespace = [' ','\t','\n'],
-			separators = [',','.',':',';'],
-			operators = ['!','@','#','$','%','&','+','-','*','/','\\','~'],
+			separators = [',','.',':',';','|'],
+			initiators = ['!','@','#','$'],
+			operators = ['%','&','+','-','*','/','\\','~'],
 			delimiters = ['(',')','[',']','{','}','\"','\'','>','<'];
 			
 			public static bool CheckInGroup (char input, char[] group) {
@@ -30,6 +31,10 @@ public static partial class VAS {
 				return CheckInGroup(input, separators);
 			}
 
+			public static bool IsInitiator (char input) {
+				return CheckInGroup(input, initiators);
+			}
+
 			public static bool IsOperator (char input) {
 				return CheckInGroup(input, operators);
 			}
@@ -39,7 +44,7 @@ public static partial class VAS {
 			}
 
 			public static bool IsSpecial (char input) {
-				return IsWhitespace(input) || IsOperator(input) || IsSeparator(input) || IsDelimiter(input);
+				return IsWhitespace(input) || IsSeparator(input) || IsInitiator(input) || IsOperator(input) || IsDelimiter(input);
 			}
 		} 
 		
