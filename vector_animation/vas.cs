@@ -63,7 +63,8 @@ public static partial class VAS {
 				//topLevel,
 				standard,
 				property,
-
+				propInter,
+				
 				nameString,
 				stdString,
 
