@@ -150,6 +150,7 @@ public static partial class VAS {
 		}
 	}
 
+	//[JSExport]
 	public static Parser.SyntaxTree CreateSyntaxTree (string file) {
 		return new Parser.SyntaxTree(Lexer.Stage2(Lexer.Tokenize(file).ExtractStructArray()));
 	}
