@@ -75,6 +75,7 @@ public static partial class VAS {
 			string iToken = "";
 			DynamicArray<string> tokens = new();
 			
+			// this could just be a switch statement in a function
 			SwitchBlock<char> initiatorSwitch = new(['@','#'], [
 				() => ContextTracker.general.Push(ContextTracker.ContextGeneral.UResourceDef),
 				() => ContextTracker.general.Push(ContextTracker.ContextGeneral.UInstructionDef)
