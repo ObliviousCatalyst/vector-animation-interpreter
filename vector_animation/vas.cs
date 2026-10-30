@@ -74,16 +74,22 @@ public static partial class VAS {
 			public static ContextScope scope = ContextScope.standard;
 		}
 
-		
+		public static NotImplementedException PlannedFeature (string feature) {
+			return new NotImplementedException($"the \"{feature}\" token is reserved for potential features that have not been implemented yet");
+		}
+
 		//[JSExport]
 		public static DynamicArray<string> Tokenize (string file) {
 			string iToken = "";
 			DynamicArray<string> tokens = new();
 			
+			
 			// this could just be a switch statement in a function
-			SwitchBlock<char> initiatorSwitch = new(['@','#'], [
+			SwitchBlock<char> initiatorSwitch = new(['@','#','!','$'], [
 				() => ContextTracker.general.Push(ContextTracker.ContextGeneral.UResourceDef),
-				() => ContextTracker.general.Push(ContextTracker.ContextGeneral.UInstructionDef)
+				() => ContextTracker.general.Push(ContextTracker.ContextGeneral.UInstructionDef),
+				() => throw PlannedFeature("!"),
+				() => throw PlannedFeature("$"),
 			]);
 
 			string DefType (string str) {
@@ -105,8 +111,14 @@ public static partial class VAS {
 				char currentChar = file[pt];
 				switch (ContextTracker.scope) {
 					case ContextTracker.ContextScope.standard:
-						initiatorSwitch.Exec(currentChar);
-						ContextTracker.scope = ContextTracker.ContextScope.property;
+						if (!SpecialChars.IsWhitespace(currentChar)) {
+							if (!SpecialChars.IsInitiator(currentChar)) {
+								throw new ArgumentException($"LEXER ERROR: unexpected char \'{currentChar}\'");
+							}
+							initiatorSwitch.Exec(currentChar);
+							ContextTracker.scope = ContextTracker.ContextScope.property;
+						}
+						
 					break;
 
 					case ContextTracker.ContextScope.property:
