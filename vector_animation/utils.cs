@@ -27,7 +27,7 @@ public class SwitchBlock <keyType> where keyType : notnull {
 // 	}
 
 // 	public override bool TrySetMember (SetMemberBinder binder, object? value) {
-// 		props[binder.Name.ToLower()] = value!; // vscode told me to put this exclamation mark here but i don't knwow what it does
+// 		props[binder.Name.ToLower()] = value!; // vscode told me to put this exclamation mark here but i don't know what it does
 
 // 		return true;
 // 	}
