@@ -143,6 +143,21 @@ public static partial class VAS {
 	
 
 	public static class Parser {
+		public class SyntaxTreeModule {
+			public DynamicArray<SyntaxTreeModule> modules = new();
+
+			public SyntaxTreeModule? this[int index] {
+				get {
+					return modules[index];
+				}
+
+				set {
+					modules[index] = value;
+				}
+			}
+			
+		}
+
 		public class SyntaxTree /*: StdDynamic */ {
 			public SyntaxTree (string[] tokens) {
 				
