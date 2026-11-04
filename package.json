@@ -1,0 +1,6 @@
+{
+	"type": "module",
+	"dependencies": {
+		"electron": "^45.2.1"
+	}
+}
