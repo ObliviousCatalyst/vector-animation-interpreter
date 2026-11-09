@@ -1,4 +1,7 @@
 using System.Runtime.InteropServices.JavaScript;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 
 namespace vector_animation;
 
@@ -18,15 +21,23 @@ public static partial class JSInterop {
 	public static partial void Emit ();
 
 	// the param must be a double[]. i don't know why but my IDE yells at me if i use float[]
-	[JSImport("drawPoly")]
-	public static partial void DrawPoly ([JSMarshalAs<JSType.Array<JSType.Number>>] double[] coords);
+	// [JSImport("drawPoly")]
+	// public static partial void DrawPoly ([JSMarshalAs<JSType.Array<JSType.Number>>] double[] coords);
+	
+	[JSExport]
+	public static void PassFunctions (string funcName, [JSMarshalAs<JSType.Function<JSType.String>>] Action<string> function) {
+		Action<object> wrapperFunc = doubles => {
+			string jsonString = JsonSerializer.Serialize(doubles);
+			function(jsonString);
+		};
+	}
 
 	[JSExport]
 	public static void ChangeMode (string modeString) {
-		switch (modeString) {
-			case "webgpu":  mode = CanvasMode.webgpu; break;
-			default: mode = CanvasMode.fallback; break;
-		}
+		mode = modeString switch {
+			"webgpu" => CanvasMode.webgpu,
+			_ => CanvasMode.fallback,
+		};
 	}
 
 	[JSExport]
@@ -49,3 +60,6 @@ public static partial class JSInterop {
 	// 	};
 	// }
 }
+
+// [JsonSerializable(typeof(double[]))]
+// internal partial class JSInteropJsonContext : JsonSerializerContext { }
