@@ -1,13 +1,13 @@
 using vector_animation.utils;
-using vector_animation.FlexibleVectors;
-using System.Reflection;
+// using vector_animation.FlexibleVectors;
+// using System.Reflection;
 
 namespace vector_animation;
 
 public static class GlobalAnimations {
 	private static DynamicArray<AnimationModule> animations = new();
 	
-	public static AnimationModule NewAnimMod (AnimodMethods methods) {
+	public static AnimationModule NewAnimMod (/*AnimodMethods*/ Dictionary<string, Action> methods) {
 		animations.Push(new());
 		return animations.GetLastItem()!;
 	}
@@ -16,7 +16,7 @@ public static class GlobalAnimations {
 
 
 public class AnimationModule {
-	public static readonly Dictionary<string,Type> functionTypes;
+	public static readonly Dictionary<string,Type> functionTypes = [];
 	
 	public class AnimodMethods {
 		public static class Util {

@@ -1,14 +1,26 @@
-import { drawPoly } from "./render.js"
+// import { drawPoly } from "./render.js"
 // import { dotnet } from "./vector_animation/bin/Release/net10.0/browser-wasm/publish/dotnet.js"
-import { dotnet } from "./vector_animation_lib/bin/Release/net10.0/dotnet.js"
-const lib = await dotnet.withDiagnosticTracing(false).create()
+// @ts-ignore -- generated .NET runtime module has no TypeScript declarations
+// import { dotnet } from "./vector_animation/bin/Release/net10.0/browser-wasm/publish/dotnet.js"
+// import { dotnet } from ".vector_animation/obj/Release/net10.0/dotnet.js"
+import { dotnet } from "./vector_animation/bin/Release/net10.0/wwwroot/_framework/dotnet.js"
 
-console.log(lib)
+//C:\Users\jackc\Documents\GitHub\vector-animation-interpreter\vector_animation\obj\Release\net10.0\dotnet.js
+//vector_animation\bin\Release\net10.0\wwwroot\_framework\dotnet.js
 
-const cfg = lib.getConfig()
-const exports = lib.getAssemblyExports(cfg.mainAssemblyName)
+export async function load () {
+	const lib = await dotnet.withDiagnosticTracing(false).create()
 
-console.log(exports)
+	console.log(lib)
+
+	const cfg = lib.getConfig()
+	const exports = await lib.getAssemblyExports(cfg.mainAssemblyName)
+
+	console.log(exports)
+
+}
+
+load()
 
 // import fs from "node:fs"
 // const file = fs.readFileSync("./vector_animation/bin/Release/net10.0/browser-wasm/publish/dotnet.js", "utf-8")

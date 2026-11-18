@@ -1,17 +1,28 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<RunAOTCompilation>true</RunAOTCompilation>
+		<ImplicitUsings>disable</ImplicitUsings>
 
 		<RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<WasmMainJSPath>main.js</WasmMainJSPath>
+		<StaticWebAssetFingerprintPattern />
+		<OverrideHtmlAssetPlaceholders>false</OverrideHtmlAssetPlaceholders>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<!-- <SupportedPlatform Include="browser" /> -->
 	</ItemGroup>
+
+	<Target Name="CopyDotnetDts" AfterTargets="ProcessFrameworkReferences">
+		<ItemGroup>
+    
+		</ItemGroup>
+		<Copy SourceFiles="@(_DotnetDtsPath)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="true" />
+	</Target>
 </Project>
