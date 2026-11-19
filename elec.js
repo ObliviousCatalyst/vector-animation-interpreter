@@ -10,13 +10,29 @@ const mimeTypes = Object.freeze({
 	".html": "text/html",
 	".css": "text/css",
 	".js": "text/javascript",
+	".json": "application/json",
 	".wasm": "application/wasm",
+	".pdb": "application/vnd.palm",
+	".map": "text/plain"
 })
 
+function getMimeType (ext) {
+	let type = mimeTypes[ext]
+	console.log(type)
+	if (type === undefined) {
+		type = "application/octet-stream"
+	}
+	console.log(type)
+	return type
+}
+
 server.on("request", async (req, res) => {
-	let ext = path.parse(req.url).ext
+	let ext = path.parse(req.url).ext ?? ".js"
+	console.log(ext)
+	res.setHeader("Content-type", getMimeType(ext))
+
 	let filepath = path.join(dirname, req.url)
-	res.setHeader("Content-type", mimeTypes[ext])
+	
 	console.log(filepath)
 	res.write(await fs.promises.readFile(filepath))
 	res.end()
