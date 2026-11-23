@@ -136,7 +136,7 @@ public static class VAS {
 		}
 
 		public static string[] Stage2 (string[] initTokens) {
-			string[] working = {};
+			string[] working = [];
 			return working;
 		}
 	}
