@@ -23,6 +23,53 @@
 		<ItemGroup>
     
 		</ItemGroup>
-		<Copy SourceFiles="@(_DotnetDtsPath)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(_DotnetDtsPath)" DestinationFolder="$(PublishDir)wwwroot\_framework\" SkipUnchangedFiles="true" />
+	</Target>
+	<Target Name="PreserveDotNetTypesDeclarationFile" AfterTargets="_ResolveWasmOutputs" BeforeTargets="CopyFilesToOutputDirectory">
+		<ItemGroup>
+		<!-- Locate dotnet.d.ts from the files scheduled for removal -->
+			<_DotNetTypesFile Include="@(_WasmBuildFilesToRemove)" Condition="'%(FileName)%(Extension)' == 'dotnet.d.ts'" />
+		</ItemGroup>
+
+		<Copy SourceFiles="@(_DotNetTypesFile)" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" Condition="'@(_DotNetTypesFile)' != ''" />
+		<Copy SourceFiles="@(_DotNetTypesFile)" DestinationFolder="$(PublishDir)wwwroot\_framework\" SkipUnchangedFiles="true" Condition="'@(_DotNetTypesFile)' != ''" />
+
+		<ItemGroup>
+			<FileWrites Include="$(OutputPath)dotnet.d.ts" Condition="'@(_DotNetTypesFile)' != ''" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="CopyDotnetDtsToOutput" AfterTargets="ProcessFrameworkReferences">
+	<ItemGroup>
+	
+	</ItemGroup>
+
+	<!-- Copies alongside dotnet.js in the build output (e.g., bin/Debug/net10.0/wwwroot/_framework or bin/.../AppBundle) -->
+	<Copy SourceFiles="@(_DotnetDtsFile)"
+		DestinationFolder="$(OutputPath)wwwroot\_framework"
+		Condition="Exists('$(OutputPath)wwwroot\_framework')"
+		SkipUnchangedFiles="true" />
+
+	<Copy SourceFiles="@(_DotnetDtsFile)"
+		DestinationFolder="$(OutputPath)"
+		Condition="!Exists('$(OutputPath)wwwroot\_framework')"
+		SkipUnchangedFiles="true" />
+	</Target>
+
+	<Target Name="CopyDotnetDtsToPublish" AfterTargets="Publish">
+	<ItemGroup>
+	
+	</ItemGroup>
+
+	<!-- Copies alongside dotnet.js in the publish folder -->
+	<Copy SourceFiles="@(_DotnetDtsFile)"
+		DestinationFolder="$(PublishDir)wwwroot\_framework"
+		Condition="Exists('$(PublishDir)wwwroot\_framework')"
+		SkipUnchangedFiles="true" />
+
+	<Copy SourceFiles="@(_DotnetDtsFile)"
+		DestinationFolder="$(PublishDir)"
+		Condition="!Exists('$(PublishDir)wwwroot\_framework')"
+		SkipUnchangedFiles="true" />
 	</Target>
 </Project>
