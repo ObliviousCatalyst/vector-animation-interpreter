@@ -42,7 +42,7 @@ public class AnimationModule {
 		
 	public AnimationModule (): this(new()) {}
 
-	public void play () {
-
+	public void Play () {
+		
 	}
 }
