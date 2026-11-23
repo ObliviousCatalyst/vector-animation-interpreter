@@ -21,10 +21,8 @@ public class AnimationModule {
 	public class AnimodMethods {
 		public static class Util {
 			public static Type GetActionType (string name) {
-				return (typeof(AnimodMethods).GetField(name) ?? typeof(Util).GetField("dummyType")!).FieldType;
+				return (typeof(AnimodMethods).GetField(name)?.FieldType) ?? typeof(Action);
 			}
-
-			private static readonly Action dummyType = () => {};
 		}
 
 		public Action<float[]> DrawPoly = (float[] floats) => {};
