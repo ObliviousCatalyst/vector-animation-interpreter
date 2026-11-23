@@ -3,8 +3,8 @@ using vector_animation.utils;
 
 namespace vector_animation;
 
-public static partial class VAS {
-	public static partial class Lexer {
+public static class VAS {
+	public static class Lexer {
 		public static class SpecialChars {
 			public static readonly char[] 
 			whitespace = [' ','\t','\n'],
