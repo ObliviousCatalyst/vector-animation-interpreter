@@ -1,7 +1,7 @@
 namespace vector_animation;
 
 public static class MTR {
-	public static string[] tokenise () {
+	public static string[] tokenize () {
 		
 		return [];
 	}
