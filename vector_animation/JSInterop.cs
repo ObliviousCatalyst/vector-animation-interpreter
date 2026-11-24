@@ -34,6 +34,16 @@ public static partial class JSInterop {
 	}
 
 	// [JSExport]
+	// [return: JSMarshalAs<JSType.Function<JSType.Object>>]
+	// public static Func<JSObject?, JSObject?> NewAnimationProxy () {
+	// 	return static (a) => {
+	// 		return () => {
+	// 			return null;
+	// 		};
+	// 	};
+	// }
+
+	// [JSExport]
 	// public static void ChangeMode (string modeString) {
 	// 	mode = modeString switch {
 	// 		"webgpu" => CanvasMode.webgpu,
