@@ -3,7 +3,7 @@
 // @ts-ignore -- generated .NET runtime module has no TypeScript declarations
 // import { dotnet } from "./vector_animation/bin/Release/net10.0/browser-wasm/publish/dotnet.js"
 // import { dotnet } from ".vector_animation/obj/Release/net10.0/dotnet.js"
-import { dotnet } from "./vector_animation/bin/Release/net10.0/wwwroot/_framework/dotnet.js"
+import { dotnet } from "../vector_animation/bin/Release/net10.0/wwwroot/_framework/dotnet.js"
 
 //C:\Users\jackc\Documents\GitHub\vector-animation-interpreter\vector_animation\obj\Release\net10.0\dotnet.js
 //vector_animation\bin\Release\net10.0\wwwroot\_framework\dotnet.js
