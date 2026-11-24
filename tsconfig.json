@@ -1,8 +1,11 @@
 {
 	"compilerOptions": {
 		"allowJs": true,
-		"outDir": "./production",
+		"outDir": "./build",
+		"rootDir": "./typescript",
 		"removeComments": true,
 		"noImplicitAny": true
-	}
+	},
+	"include": ["./typescript"],
+	"exclude": ["./build"]
 }
